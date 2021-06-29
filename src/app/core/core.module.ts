@@ -8,13 +8,16 @@ import { LoginComponent } from './views/login/login.component';
 import { AppComponent } from './views/app.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from './components/loader/loader.component';
+import { HttpLoaderInterceptor } from './services/http-loader.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LoaderComponent
   ],
   imports: [
     RouterModule,
@@ -25,6 +28,9 @@ import { RouterModule } from '@angular/router';
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true
     }
   ],
   exports: [
