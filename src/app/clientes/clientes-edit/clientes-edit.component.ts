@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { formatFecha } from 'src/app/utils/dates-helpers';
-import { IdValor } from 'src/app/viajes/services/id-valor';
+import { formatFecha } from 'src/app/core/utils/dates-helpers';
+import { IdValor } from 'src/app/models/id-valor';
 import { Cliente } from '../models/cliente';
 import { ClientesModelService } from '../services/clientes-model.service';
 

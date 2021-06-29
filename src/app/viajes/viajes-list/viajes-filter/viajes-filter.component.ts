@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IdValor } from 'src/app/models/id-valor';
 import { ViajesFilter } from '../../models/viajes-filter';
-import { IdValor } from '../../services/id-valor';
-
-
 @Component({
   selector: 'app-viajes-filter',
   templateUrl: './viajes-filter.component.html',

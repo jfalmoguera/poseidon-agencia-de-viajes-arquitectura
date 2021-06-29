@@ -2,10 +2,10 @@ import { HttpClient, HttpHeaders, HttpParams, HttpStatusCode } from '@angular/co
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
-import { IdValor } from './id-valor';
 import { map } from 'rxjs/operators';
 import { ViajesFilter } from '../models/viajes-filter';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { IdValor } from 'src/app/models/id-valor';
 
 export interface ViajeDelete {
   destroyedRow: number

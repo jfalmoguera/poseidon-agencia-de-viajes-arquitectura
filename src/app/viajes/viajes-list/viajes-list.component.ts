@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IdValor } from 'src/app/models/id-valor';
 import { Viaje } from '../models/viaje';
 import { ViajesFilter } from '../models/viajes-filter';
-import { IdValor } from '../services/id-valor';
 import { ViajesModelService } from '../services/viajes-model.service';
 
 @Component({
@@ -50,7 +50,7 @@ export class ViajesListComponent implements OnInit {
 
   editarClick(id: string): void {
     if (id) {
-      this.router.navigate(['viajes/editar',id]);
+      this.router.navigate(['viajes/editar', id]);
     }
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { formatFecha } from 'src/app/utils/dates-helpers';
+import { formatFecha } from 'src/app/core/utils/dates-helpers';
+import { IdValor } from 'src/app/models/id-valor';
 import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
 import { Viaje } from '../models/viaje';
-import { IdValor } from '../services/id-valor';
 import { ViajesModelService } from '../services/viajes-model.service';
 
 @Component({

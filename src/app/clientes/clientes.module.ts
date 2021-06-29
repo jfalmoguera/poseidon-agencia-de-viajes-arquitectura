@@ -5,7 +5,6 @@ import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { ClientesEditComponent } from './clientes-edit/clientes-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     ClientesListComponent,

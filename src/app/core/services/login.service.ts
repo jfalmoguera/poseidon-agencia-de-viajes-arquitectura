@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/h
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Usuario } from '../models/usuario';
+import { Usuario } from '../../models/usuario';
 
 /**
  * Este servicio sabe como gestionar con la API 

@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse, HttpResponseBase, HttpStatusCode } from '@ang
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IdValor } from 'src/app/viajes/services/id-valor';
+import { IdValor } from 'src/app/models/id-valor';
 import { Cliente } from '../models/cliente';
 import { ClienteListItem } from '../models/cliente-list-item';
 
