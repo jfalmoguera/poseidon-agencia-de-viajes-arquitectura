@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HttpLoaderInterceptor } from './services/http-loader.interceptor';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +24,7 @@ import { HttpLoaderInterceptor } from './services/http-loader.interceptor';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

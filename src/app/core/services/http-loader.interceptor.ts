@@ -20,7 +20,7 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
     this.loader.showLoading(request.url);
 
     return next.handle(request).pipe(
-      // delay(500),
+      delay(500),
       catchError((e) => {
         this.loader.hideLoading(request.url);
         return e;
