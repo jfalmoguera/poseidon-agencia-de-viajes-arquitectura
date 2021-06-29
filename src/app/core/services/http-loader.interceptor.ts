@@ -17,17 +17,17 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    this.loader.showLoading();
+    this.loader.showLoading(request.url);
 
     return next.handle(request).pipe(
-      delay(2000),
+      // delay(500),
       catchError((e) => {
-        this.loader.hideLoading();
+        this.loader.hideLoading(request.url);
         return e;
       }),
       tap((evt: any) => {
         if (evt instanceof HttpResponse) {
-          this.loader.hideLoading();
+          this.loader.hideLoading(request.url);
         }
       })
     );

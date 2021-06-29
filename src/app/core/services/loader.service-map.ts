@@ -7,20 +7,36 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoaderService {
 
   private $loading = new BehaviorSubject(false);
-  private requestMap: Set<string> = new Set<string>();
+  private requestMap: Map<string, number> = new Map<string, number>();
 
   constructor() { }
 
   showLoading(url: string): void {
     if (url) {
-      this.requestMap.add(url);
+
+      const contador = this.requestMap.get(url);
+      if (contador != undefined) {
+        this.requestMap.set(url, contador + 1);
+      } else {
+        this.requestMap.set(url, 1);
+      }
+
       this.$loading.next(true);
     }
   }
 
   hideLoading(url: string): void {
     if (url) {
-      this.requestMap.delete(url);
+
+      const contador = this.requestMap.get(url);
+
+      if (contador !== undefined) {
+        if (contador > 1){
+          this.requestMap.set(url, contador - 1);
+        }else {
+          this.requestMap.delete(url);
+        }
+      }
 
       if (this.requestMap.size === 0) {
         this.$loading.next(false);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { LoaderService } from '../services/loader.service';
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loaderService.loading.subscribe(x =>{
+    this.loaderService.loading.pipe(delay(0)).subscribe(x =>{
       this.loading = x;
     })
   }
