@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastMessagesService } from 'src/app/core/services/toast-messages.service';
 import { formatFecha } from 'src/app/core/utils/dates-helpers';
 import { IdValor } from 'src/app/models/id-valor';
 import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
@@ -23,8 +24,8 @@ export class ViajesEditComponent implements OnInit {
 
   viajesForm: FormGroup;
 
-  constructor(fb: FormBuilder, private viajesModel: ViajesModelService, 
-    private router: Router,
+  constructor(fb: FormBuilder, private viajesModel: ViajesModelService,
+    private router: Router, private toastMessages: ToastMessagesService,
     route: ActivatedRoute) {
 
     route.params.subscribe(params => {
@@ -48,9 +49,9 @@ export class ViajesEditComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.id){
+    if (this.id) {
       this.viajesModel.getViajeById(this.id).subscribe(viaje => {
-        if (viaje){
+        if (viaje) {
           this.viajesForm.patchValue(viaje);
           if (viaje?.fechaSalida) {
             const t = formatFecha(viaje?.fechaSalida);
@@ -93,6 +94,7 @@ export class ViajesEditComponent implements OnInit {
       }
 
       this.viajesModel.guardar(viaje).subscribe(x => {
+        this.toastMessages.showSuccess('Viaje guardado');
         this.router.navigate(['viajes']);
       })
 

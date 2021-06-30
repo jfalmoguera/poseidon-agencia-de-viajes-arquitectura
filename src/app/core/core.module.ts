@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import localeEs from '@angular/common/locales/es';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -34,7 +35,8 @@ registerLocaleData(localeEs);
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HotToastModule.forRoot()
   ],
   providers: [
     {
