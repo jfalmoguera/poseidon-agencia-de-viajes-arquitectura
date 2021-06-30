@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Viaje } from '../models/viaje';
 import { map } from 'rxjs/operators';
-import { ViajesFilter } from '../models/viajes-filter';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { IdValor } from 'src/app/models/id-valor';
+import { GridEvent } from '../models/grid-event';
+import { Viaje } from '../models/viaje';
+import { ViajesFilter } from '../models/viajes-filter';
+import { ViajesGridResult } from '../models/viajes-grid-result';
 
 export interface ViajeDelete {
   destroyedRow: number
@@ -34,16 +36,18 @@ export class ViajesModelService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  getViajes(): Observable<Viaje[]> {
+  getViajes(): Observable<ViajesGridResult> {
 
     const headers = new HttpHeaders({
       Pepito: `Mi nombre es pepito`
     })
 
-    return this.http.get<Viaje[]>(`${this.url}/viajes`, {
-      headers
-    }).pipe(
-      map(x => x.map(v => new Viaje(v)))
+    let params = new HttpParams();
+    params = params.set('page', 1);
+    params = params.set('pageSize', 5);
+
+    return this.http.get<ViajesGridResult>(`${this.url}/viajes`, { headers, params }).pipe(
+      map(x => new ViajesGridResult(x))
     );
 
   }
@@ -76,13 +80,6 @@ export class ViajesModelService {
 
   eliminar(id: string): Observable<boolean | null> {
 
-    // Opcion de Victor
-    // if (id) {
-    //   return this.http.delete<boolean>(`${this.url}/viajes/${id}`)
-    //   // .pipe(
-    //   //   map(x => x.delete));
-    // }
-
     if (id) {
       return this.http.delete<any>(`${this.url}/viajes/${id}`, { observe: 'response' }).pipe(
         map(x => x.status === HttpStatusCode.Ok));
@@ -91,8 +88,10 @@ export class ViajesModelService {
     return of(null);
   }
 
-  buscar(filtro: ViajesFilter): Observable<Viaje[]> {
-    const { nombre, destino, tipoDeViajeId } = filtro;
+  buscar(filtro: ViajesFilter | null, ev: GridEvent = { page: 1, pageSize: 5 }): Observable<ViajesGridResult> {
+
+
+    //#region samples
 
     // let params = '';
 
@@ -112,23 +111,34 @@ export class ViajesModelService {
     //   map(x => x.map(v => new Viaje(v)))
     // );
 
+    //#endregion
 
     let httpP = new HttpParams();
 
-    if (filtro?.tipoDeViajeId) {
-      httpP = httpP.set('tipoDeViajeId', tipoDeViajeId);
+    if (filtro) {
+      const { nombre, destino, tipoDeViajeId } = filtro;
+
+      if (filtro?.tipoDeViajeId) {
+        httpP = httpP.set('tipoDeViajeId', tipoDeViajeId);
+      }
+
+      if (filtro?.nombre) {
+        httpP = httpP.set('nombre', nombre);
+      }
+
+      if (filtro?.destino) {
+        httpP = httpP.set('destino', destino);
+      }
+
     }
 
-    if (filtro?.nombre) {
-      httpP = httpP.set('nombre', nombre);
+    if (ev.page && ev.pageSize) {
+      httpP = httpP.set('page', ev.page);
+      httpP = httpP.set('pageSize', ev.pageSize);
     }
 
-    if (filtro?.destino) {
-      httpP = httpP.set('destino', destino);
-    }
-
-    return this.http.get<Viaje[]>(`${this.url}/viajes/search`, { params: httpP }).pipe(
-      map(x => x.map(v => new Viaje(v)))
+    return this.http.get<ViajesGridResult>(`${this.url}/viajes/search`, { params: httpP }).pipe(
+      map(x => new ViajesGridResult(x))
     );
 
   }

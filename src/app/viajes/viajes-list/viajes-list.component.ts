@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdValor } from 'src/app/models/id-valor';
-import { Viaje } from '../models/viaje';
+import { GridEvent } from '../models/grid-event';
 import { ViajesFilter } from '../models/viajes-filter';
+import { ViajesGridResult } from '../models/viajes-grid-result';
 import { ViajesModelService } from '../services/viajes-model.service';
 
 @Component({
@@ -13,9 +14,11 @@ import { ViajesModelService } from '../services/viajes-model.service';
 export class ViajesListComponent implements OnInit {
 
   tiposDeViaje: IdValor[] = [];
-  viajes: Viaje[] = [];
+  viajes: ViajesGridResult = new ViajesGridResult();
 
   mostrarTarjetas = false;
+
+  filtro: ViajesFilter | null = null;
 
   constructor(private viajesModel: ViajesModelService, private router: Router) { }
 
@@ -32,6 +35,7 @@ export class ViajesListComponent implements OnInit {
 
   searchClick(filtro: ViajesFilter): void {
     if (filtro) {
+      this.filtro = filtro;
       this.viajesModel.buscar(filtro).subscribe(result => {
         this.viajes = result;
       });
@@ -52,5 +56,13 @@ export class ViajesListComponent implements OnInit {
     if (id) {
       this.router.navigate(['viajes/editar', id]);
     }
+  }
+
+  paging(ev: GridEvent): void {
+    this.viajesModel.buscar(this.filtro, ev).subscribe(result => {
+      if (result) {
+        this.viajes = result;
+      }
+    });
   }
 }

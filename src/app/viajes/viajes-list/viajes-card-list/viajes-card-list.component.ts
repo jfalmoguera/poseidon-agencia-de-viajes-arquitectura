@@ -8,7 +8,7 @@ import { Viaje } from '../../models/viaje';
 })
 export class ViajesCardListComponent implements OnInit, OnChanges {
 
-  @Input() viajes: Viaje[] = [];
+  @Input() viajes: Viaje[] | null = [];
   viajesCard: Viaje[] = [];
 
   constructor() { }
