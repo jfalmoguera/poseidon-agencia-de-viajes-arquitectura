@@ -135,8 +135,8 @@ span {
 }
 
 .mi-tabla {
-    border: 1px solid grey;
-    border-collapse: collapse;
+    // border: 1px solid grey;
+    // border-collapse: collapse;
     width: 100%;
 
     thead {
@@ -153,7 +153,7 @@ span {
 
     tr {
         &:hover {
-            background-color: beige;
+            background-color: rgba(128, 128, 128, 0.139);
             cursor: pointer;
         }
     }
@@ -177,28 +177,6 @@ span {
 
     &.right {
         text-align: right;
-    }
-
-    .en-oferta {
-        // background-color: rgba(247, 133, 133, 0.315);
-        color: rgb(98, 16, 16);
-        font-weight: bold;
-    }
-
-    .fa-lock-open {
-        color: green;
-    }
-
-    .fa-lock {
-        color: red;
-    }
-
-    .in-red {
-        color: red;
-    }
-
-    .fa {
-        margin-right: 10px;
     }
 }
 
