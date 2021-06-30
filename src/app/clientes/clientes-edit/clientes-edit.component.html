@@ -1,48 +1,52 @@
-<form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
-    <fieldset>
-        <legend>
-            <h1> Edicion de Clientes</h1>
-        </legend>
-        <div class="flex-row">
-            <div class="field-element">
-                <label for="">Nombre: </label>
-                <input id="" type="text" formControlName="nombre">
+<mat-card class="filter-card">
+    <mat-card-header>
+        <mat-card-title>Busqueda de Viajes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
+            <div fxLayout="row wrap" fxLayoutGap="20px">
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="Introduce el nombre" formControlName="nombre">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput placeholder="Introduce el destino" formControlName="apellidos">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>DNI</mat-label>
+                    <input matInput placeholder="Introduce el nombre" formControlName="dni">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput placeholder="Introduce el destino" formControlName="direccion">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>email</mat-label>
+                    <input matInput type="email" placeholder="Introduce el nombre" formControlName="email">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput placeholder="Introduce el destino" formControlName="telefono">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaDeNacimiento">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>                   
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Estado Civil</mat-label>
+                    <mat-select formControlName="estadoCivilId">
+                        <mat-option [value]=""></mat-option>
+                        <mat-option [value]="opt.id" *ngFor="let opt of estadosCivilList">{{opt.valor}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
-            <div class="field-element">
-                <label for="">Apellidos: </label>
-                <input id="" type="text" formControlName="apellidos">
+            <div class="row-buttons">
+                <button mat-stroked-button color="primary" type="submit">Guardar</button>
+                <button mat-stroked-button color="accent" type="button" (click)="resetForm()">Nuevo Cliente</button>
             </div>
-            <div class="field-element">
-                <label for="">DNI: </label>
-                <input id="" type="text" formControlName="dni">               
-            </div>
-            <div class="field-element">
-                <label for="">Direccion: </label>
-                <input id="" type="text" formControlName="direccion">
-            </div>
-            <div class="field-element">
-                <label for="">Email: </label>
-                <input id="" type="email" formControlName="email">
-            </div>
-            <div class="field-element">
-                <label for="">Telefono: </label>
-                <input id="" type="number" formControlName="telefono">
-            </div>
-            <div class="field-element">
-                <label for="">Fecha de Nacimiento: </label>
-                <input id="" type="date" formControlName="fechaDeNacimiento">
-            </div>>
-            <div class="field-element">
-                <label for="">Esatdo Civil: </label>
-                <select id="" formControlName="estadoCivilId">
-                    <option value=""></option>
-                    <option [ngValue]="opt.id" *ngFor="let opt of estadosCivilList">{{opt.valor}}</option>
-                </select>
-            </div>
-        </div>
-    </fieldset>
-    <div class="row-buttons">
-        <button class="btn primary" type="submit">Guardar</button>
-        <button class="btn " type="button" (click)="resetForm()">Nuevo Cliente</button>
-    </div>
-</form>
+        </form>
+    </mat-card-content>
+</mat-card>
