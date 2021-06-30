@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpAuthInterceptor } from './services/http-auth.interceptor';
 import { HeaderComponent } from './components/header/header.component';
@@ -14,6 +14,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +42,12 @@ import { MatButtonModule } from '@angular/material/button';
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true
+    },
+    {
+      provide: LOCALE_ID, useValue: 'es'
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'
     }
   ],
   exports: [

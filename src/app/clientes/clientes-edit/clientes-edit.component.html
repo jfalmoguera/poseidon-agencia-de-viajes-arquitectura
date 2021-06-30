@@ -1,6 +1,6 @@
-<mat-card class="filter-card">
+<mat-card class="mi-edition-form">
     <mat-card-header>
-        <mat-card-title>Busqueda de Viajes</mat-card-title>
+        <mat-card-title>Busqueda de Clientes</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
@@ -44,8 +44,8 @@
                 </mat-form-field>
             </div>
             <div class="row-buttons">
-                <button mat-stroked-button color="primary" type="submit">Guardar</button>
-                <button mat-stroked-button color="accent" type="button" (click)="resetForm()">Nuevo Cliente</button>
+                <button mat-raised-button color="primary" type="submit">Guardar</button>
+                <button mat-raised-button color="accent" type="button" (click)="resetForm()">Nuevo Cliente</button>
             </div>
         </form>
     </mat-card-content>

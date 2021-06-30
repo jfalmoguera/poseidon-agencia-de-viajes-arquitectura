@@ -106,7 +106,7 @@ export class ViajesEditComponent implements OnInit {
 
   validarDestino(control: FormControl): { [s: string]: boolean } | null {
 
-    if (control.value?.toLowerCase() === 'londres') {
+    if (control.value?.toLowerCase() === 'mallorca') {
       return { invalidDestination: true }
     }
 
