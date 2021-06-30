@@ -14,13 +14,13 @@ import { catchError, delay, tap } from 'rxjs/operators';
 export class HttpLoaderInterceptor implements HttpInterceptor {
 
   constructor(private loader: LoaderService) { }
-
+  
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     this.loader.showLoading(request.url);
 
     return next.handle(request).pipe(
-      delay(500),
+      delay(400),
       catchError((e) => {
         this.loader.hideLoading(request.url);
         return e;

@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <span [routerLink]="['']">Mi Agencia de viajes</span>
     <span [routerLink]="['/viajes']">Viajes</span>
     <span [routerLink]="['/viajes/editar']">Crear Viaje</span>
@@ -8,4 +8,21 @@
     <span class="close-session">
         <i (click)="cerrarSesionClick()" title="Cerrar sesión" class="fas fa-sign-out-alt"></i>
     </span>
-</header>
+</header> -->
+
+
+<mat-toolbar color="primary">
+    <span [routerLink]="['']">Mi Agencia de viajes</span>
+    <span [routerLink]="['/viajes']">Viajes</span>
+    <span [routerLink]="['/viajes/editar']">Crear Viaje</span>
+    <span [routerLink]="['/clientes']">Clientes</span>
+    <span [routerLink]="['/clientes/editar']">Crear Cliente</span>
+
+    <!-- <span class="close-session">
+        <i (click)="cerrarSesionClick()" title="Cerrar sesión" class="fas fa-sign-out-alt"></i>
+    </span> -->
+
+    <button mat-icon-button class="close-session">
+        <mat-icon (click)="cerrarSesionClick()">logout</mat-icon>
+    </button>
+</mat-toolbar>
