@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdValor } from 'src/app/models/id-valor';
-import { ConfirmationService } from 'src/app/shared/confirmation-modal/confirmation.service';
+import { ConfirmationService } from 'src/app/shared/modals/confirmation.service';
 import { GridEvent } from '../models/grid-event';
 import { ViajesFilter } from '../models/viajes-filter';
 import { ViajesGridResult } from '../models/viajes-grid-result';
