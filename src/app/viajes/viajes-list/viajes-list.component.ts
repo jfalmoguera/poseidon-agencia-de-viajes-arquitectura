@@ -50,7 +50,7 @@ export class ViajesListComponent implements OnInit {
       this.confirmationService.confirmar(
         {
           titulo: 'Eliminar Viaje',
-          pregunta: '¿ Seguro que quiere eliminar el viaje ?',
+          mensaje: '¿ Seguro que quiere eliminar el viaje ?',
           opcionSi: 'Si, eliminar',
           opcionNo: 'No, cancelar'
         }

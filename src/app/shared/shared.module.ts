@@ -15,11 +15,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { ConfirmationService } from './confirmation-modal/confirmation.service';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 @NgModule({
   declarations: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    InfoModalComponent
   ],
   imports: [
     CommonModule,

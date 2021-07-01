@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface ConfirmationData {
   titulo: string;
-  pregunta: string;
+  mensaje: string;
   opcionNo: string;
   opcionSi: string;
 }
