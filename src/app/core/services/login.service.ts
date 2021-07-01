@@ -27,10 +27,26 @@ export class LoginService {
         return new Usuario(u.body)
       }),
       catchError((e: HttpErrorResponse) => {
-        if (e.status === HttpStatusCode.InternalServerError){
-            console.log('La api ha muerto');          
+        if (e.status === HttpStatusCode.InternalServerError) {
+          console.log('La api ha muerto');
         }
-        console.log(e.message);        
+        console.log(e.message);
+        return of(null);
+      })
+    );
+  }
+
+  refreshToken(refresh: any): Observable<any> {
+
+    return this.http.post<Usuario>(this.url, { refresh }, { observe: 'response' }).pipe(
+      map(u => {
+        return new Usuario(u.body)
+      }),
+      catchError((e: HttpErrorResponse) => {
+        if (e.status === HttpStatusCode.InternalServerError) {
+          console.log('La api ha muerto');
+        }
+        console.log(e.message);
         return of(null);
       })
     );

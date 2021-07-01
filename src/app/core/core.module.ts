@@ -1,6 +1,6 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpAuthInterceptor } from './services/http-auth.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './views/home/home.component';
@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import localeEs from '@angular/common/locales/es';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { HttpErrorInterceptor } from './services/http-error.interceptor';
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -44,6 +45,9 @@ registerLocaleData(localeEs);
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true
     },
     {
       provide: LOCALE_ID, useValue: 'es'

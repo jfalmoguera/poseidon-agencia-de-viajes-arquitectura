@@ -5,11 +5,9 @@
     <div class="button-actions">
         <button mat-raised-button color="accent" (click)="cambiarVistaClick()">Cambiar vista</button>
     </div>
-    
+
     <app-viajes-table-list [viajes]="viajes" (borrar)="borrarClick($event)" (editar)="editarClick($event)" *ngIf="!mostrarTarjetas"
-        (page)="paging($event)"
-    
-    >
+        (page)="paging($event)">
     </app-viajes-table-list>
     <app-viajes-card-list [viajes]="viajes.rows" *ngIf="mostrarTarjetas"></app-viajes-card-list>
 </div>
