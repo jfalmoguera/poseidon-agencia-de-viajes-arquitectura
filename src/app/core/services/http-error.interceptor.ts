@@ -11,11 +11,12 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { ToastMessagesService } from './toast-messages.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private toast: ToastMessagesService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -24,6 +25,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === HttpStatusCode.Unauthorized) {
           this.authService.logOutUser();
           this.router.navigate(['login']);
+          this.toast.showError('Su sessión ha caducado');
         }
         return error;
       }),
