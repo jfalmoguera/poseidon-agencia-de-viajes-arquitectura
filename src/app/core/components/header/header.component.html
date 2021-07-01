@@ -21,6 +21,11 @@
     <!-- <span class="close-session">
         <i (click)="cerrarSesionClick()" title="Cerrar sesión" class="fas fa-sign-out-alt"></i>
     </span> -->
+    <span class="example-spacer"></span>
+    
+    <button mat-button>
+        <mat-icon [routerLink]="['/admin']">admin_panel_settings</mat-icon>
+    </button>
 
     <button mat-icon-button class="close-session">
         <mat-icon (click)="cerrarSesionClick()">logout</mat-icon>

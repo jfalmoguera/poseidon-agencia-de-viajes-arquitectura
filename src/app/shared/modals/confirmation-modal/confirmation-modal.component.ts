@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface ConfirmationData {
-  titulo: string;
-  mensaje: string;
-  opcionNo: string;
-  opcionSi: string;
+  titulo?: string;
+  mensaje?: string;
+  opcionNo?: string;
+  opcionSi?: string;
 }
 
 @Component({

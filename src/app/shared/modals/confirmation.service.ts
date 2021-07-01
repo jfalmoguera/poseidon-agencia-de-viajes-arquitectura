@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { InfoModalComponent } from './info-modal/info-modal.component';
+import { InfoData, InfoModalComponent } from './info-modal/info-modal.component';
 import { ConfirmationData, ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class ConfirmationService {
     }).afterClosed();
   }
 
-  info(data: ConfirmationData): Observable<any> {
+  info(data: InfoData): Observable<any> {
     return this.dialog.open(InfoModalComponent, {
       data,
       width: '500px',
