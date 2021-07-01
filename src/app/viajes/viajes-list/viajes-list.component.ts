@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdValor } from 'src/app/models/id-valor';
+import { ConfirmationService } from 'src/app/shared/confirmation-modal/confirmation.service';
 import { GridEvent } from '../models/grid-event';
 import { ViajesFilter } from '../models/viajes-filter';
 import { ViajesGridResult } from '../models/viajes-grid-result';
@@ -20,7 +21,9 @@ export class ViajesListComponent implements OnInit {
 
   filtro: ViajesFilter | null = null;
 
-  constructor(private viajesModel: ViajesModelService, private router: Router) { }
+  constructor(private viajesModel: ViajesModelService,
+    private confirmationService: ConfirmationService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.viajesModel.getViajes().subscribe(result => {
@@ -43,11 +46,22 @@ export class ViajesListComponent implements OnInit {
   }
 
   borrarClick(id: string): void {
-    if (id && confirm('Esta seguro de querer eliminar el viaje ?')) {
-      this.viajesModel.eliminar(id).subscribe(result => {
-        this.viajesModel.getViajes().subscribe(result => {
-          this.viajes = result;
-        });
+    if (id) {
+      this.confirmationService.confirmar(
+        {
+          titulo: 'Eliminar Viaje',
+          pregunta: '¿ Seguro que quiere eliminar el viaje ?',
+          opcionSi: 'Si, eliminar',
+          opcionNo: 'No, cancelar'
+        }
+      ).subscribe(x => {
+        if (x) {
+          this.viajesModel.eliminar(id).subscribe(result => {
+            this.viajesModel.getViajes().subscribe(result => {
+              this.viajes = result;
+            });
+          })
+        }
       })
     }
   }

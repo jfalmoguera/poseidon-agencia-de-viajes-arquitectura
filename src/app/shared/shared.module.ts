@@ -12,10 +12,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { ConfirmationService } from './confirmation-modal/confirmation.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmationModalComponent
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -29,7 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -44,7 +50,11 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    // MatDialogModule
+  ],
+  providers: [
+    ConfirmationService
   ]
 })
 export class SharedModule { }
